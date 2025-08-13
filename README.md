@@ -19,7 +19,7 @@
 
 * **Agisoft Metashape Pro 2.2.1** (GUI and/or headless `metashape.sh`/`metashape.exe`).
 * **NVIDIA GPU** (recommended), recent driver; CPU-only also works (slower).
-* **Python 3.8+** (for the mask generator CLI).
+* **Python 3.9+** (for the mask generator CLI).
 * Python packages (mask generator): `Pillow`, `numpy`.
 * Optional CRS: `config/mm.prj` (WKT) describing *Local Coordinates (mm)*.
 
@@ -54,9 +54,9 @@ disc3d-batch/
 ### A) Get the code
 
 ```bash
-# clone your repository
-git clone https://github.com/<org>/<repo>.git
-cd <repo>
+# clone this repository
+git clone https://github.com/JoMfN/Metashape_Batch_DISC3D.git
+cd Metashape_Batch_DISC3Dv
 ```
 
 ### B) Mask generator (system Python)
@@ -71,6 +71,9 @@ source .venv/bin/activate
 pip install --upgrade pip
 pip install pillow numpy
 ```
+
+or conda... 
+
 
 ### C) Metashape 2.2.1
 

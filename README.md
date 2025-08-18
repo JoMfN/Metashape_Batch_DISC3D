@@ -35,11 +35,11 @@ disc3d-batch/
 │  ├─ MetashapeBatch.py              # Stage A: build .psz (align → optimize f → depth → mesh)
 │  ├─ TextureExport.py               # Stage B: texture + exports (optional)
 │  ├─ make_disc3d_masks.py           # CLI: generate per-photo PNG masks
+│  ├─ config/
+│  │  └─ mm.prj                         # Local Coordinates (mm) (optional)
+│  ├─ templates/
+│  │  └─ masks/                         # one PNG per photo filename (255=mask)
 │  └─ utils/                         # (optional helpers)
-├─ templates/
-│  └─ masks/                         # one PNG per photo filename (255=mask)
-├─ config/
-│  └─ mm.prj                         # Local Coordinates (mm) (optional)
 ├─ queues/                           # text lists for worker scripts (Linux)
 ├─ logs/
 └─ docs/

@@ -79,7 +79,7 @@ or conda...
 
 * Install Metashape Pro 2.2.1 and activate your license.
 * **Windows:** `"C:\\Program Files\\Agisoft\\Metashape Pro\\metashape.exe"`
-* **Linux:** `/home/$USER/metashape-pro/metashape.sh`
+* **Linux:** `/opt/metashape-pro/metashape.sh`
 
 > No extra Python packages are required inside Metashape for Stage A/B.
 
@@ -192,8 +192,9 @@ chunk.matchPhotos(
     reference_preselection=True,
     keypoint_limit=250000,
     tiepoint_limit=250000,
-    keep_keypoints=True,
-    guided_matching=False
+    keep_keypoints=False,
+    guided_matching=False,
+    filter_stationary_points=True
 )
 chunk.alignCameras(adaptive_fitting=False)
 doc.save()

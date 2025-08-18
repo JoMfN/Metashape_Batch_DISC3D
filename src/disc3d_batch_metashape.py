@@ -31,8 +31,8 @@ If you don’t have an mm.prj (Local Coordinates in millimeters), omit --mm-prj 
 the script will import reference without an explicit CRS (OK for this stage).
 
 *LINUX*
+Metashape 2.2.1 (linux) — short, single-file batch for DISC3D
 DISC3D → Metashape batch pipeline (Method B, headless, Linux)
-
 Run with Metashape itself (NOT system Python), for example:
 
   /opt/metashape/metashape.sh -r /path/to/disc3d_batch_metashape.py -- \
@@ -53,7 +53,7 @@ Notes
 
 Author
 ------
-Joachim Snellings - Data-Architect | DevOp - MfN Berlin
+Joachim Snellings - Data-Architect | DevOp - ELIO (Museum für Naturkunde) Berlin
 
 """
 
@@ -179,7 +179,6 @@ def process_scan(scan_dir: Path, f_px: float, crs):
     if not chunk.sensors:
         return ("fail", "No sensor after adding photos")
     sensor = chunk.sensors[0]
-
     cal = Metashape.Calibration()
     # carry over image size if known (helps UI show correct resolution)
     try:
@@ -202,7 +201,6 @@ def process_scan(scan_dir: Path, f_px: float, crs):
     sensor.fixed_calibration = False  # important: we still want to optimize f later
     doc.save()
 
-
     # Import reference (Label X Y Z; space-delimited; cameras; no rotations/accuracies)
     if crs:
         chunk.crs = crs
@@ -221,6 +219,7 @@ def process_scan(scan_dir: Path, f_px: float, crs):
     )
     doc.save()
 
+  
     # Match & align (highest; generic+reference; 250k/250k; keep keypoints; guided off; no adaptive)
     # For 2.2.1, passing accuracy enum works; to keep it short we rely on the built-in names.
     try:
@@ -228,21 +227,25 @@ def process_scan(scan_dir: Path, f_px: float, crs):
             accuracy=Metashape.HighestAccuracy,
             generic_preselection=True,
             reference_preselection=True,
+            reference_preselection_mode=Metashape.ReferencePreselectionSource,
             keypoint_limit=250000,
             tiepoint_limit=250000,
-            keep_keypoints=True,
-            guided_matching=False
+            keep_keypoints=False,
+            guided_matching=False,
+            filter_stationary_points=True
         )
     except Exception:
-        # fallback with downscale=1 (highest) if enum name differs
+        # fallback with downscale=0 (highest) if enum name differs
         chunk.matchPhotos(
-            downscale=1,
+            downscale=0,
             generic_preselection=True,
             reference_preselection=True,
+            reference_preselection_mode=Metashape.ReferencePreselectionSource,
             keypoint_limit=250000,
             tiepoint_limit=250000,
-            keep_keypoints=True,
-            guided_matching=False
+            keep_keypoints=False,
+            guided_matching=False,
+            filter_stationary_points=True
         )
     # --- after alignment ---
     try:
@@ -354,21 +357,6 @@ def process_scan(scan_dir: Path, f_px: float, crs):
             export_markers=False,
             use_labels=False
         )
-
-    # Export calibrated cameras (small; requested to be saved alongside)
-    #    try:
-    #        chunk.exportCameras(path=str(cams_xml),
-    #                            format=Metashape.CamerasFormatXML,
-    #                            projection=crs if crs else None,
-    #                            export_points=True,
-    #                            export_markers=False)
-    #    except Exception:
-    #        # fallback without projection kw
-    #        chunk.exportCameras(path=str(cams_xml),
-    #                            format=Metashape.CamerasFormatXML,
-    #                            export_points=True,
-    #                            export_markers=False)
-
     # Final save (archive .psz)
     doc.save()
     return ("ok", f"Saved {psz}  cams_xml={cams_xml}")
@@ -382,7 +370,6 @@ def main(argv=None):
     ap.add_argument("--list", required=True, help="ScanFolderFiles.txt with one Datetime per line (e.g., 20250502T082851)")
     ap.add_argument("--mm-prj", default=None, help="Optional mm.prj (WKT) for Local Coordinates (mm)")
     ap.add_argument("--f-px", type=float, default=10276.64, help="Precalibrated f in pixels (default: 10276.64)")
-    # CLI
     ap.add_argument("--gpu", type=int, default=None, help="GPU index to use (Linux/Windows headless)")
     args = ap.parse_args(argv)
 

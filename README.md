@@ -346,7 +346,6 @@ MIT
 ---
 
 ## Acknowledgements
-
-This workflow was developed to support scalable, consistent digitization for museum-grade DISC3D acquisitions, with alignment settings and calibration choices tuned to mirror prior manual practice.
-The effective handling and capture of the focus stacked images were done by Eybing, Emily
-The Manual for describing the manual workflow of generating 3D models is the work Original by M. Heethoff and modified by S. Schmelzle, last version edit - 24.01.2025
+- This workflow was developed to support scalable, consistent digitization for museum-grade DISC3D acquisitions, with alignment settings and calibration choices tuned to mirror prior manual practice.
+- The effective handling and capture of the focus stacked images with the DISC3D station were done by Emily Eybing at the Museum für Naturkunde Berlin
+- The Manual for describing the manual workflow of generating 3D models is the work Original by M. Heethoff and modified by S. Schmelzle, last version edit - 24.01.2025

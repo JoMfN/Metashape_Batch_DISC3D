@@ -121,7 +121,7 @@ python src/make_disc3d_masks.py `
 /opt/metashape/metashape.sh -r src/MetashapeBatch.py -- \
   --root /mnt/data/DATA \
   --list /mnt/data/DATA/ScanFolderFiles.txt \
-  --mm-prj config/mm.prj \
+  --mm-prj src/config/mm.prj \
   --f-px 10276.64 \
   --mask-dir templates/masks \
   --skip-rows 1 \

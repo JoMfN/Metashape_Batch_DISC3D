@@ -56,7 +56,7 @@ disc3d-batch/
 ```bash
 # clone this repository
 git clone https://github.com/JoMfN/Metashape_Batch_DISC3D.git
-cd Metashape_Batch_DISC3Dv
+cd Metashape_Batch_DISC3D
 ```
 
 ### B) Mask generator (system Python)
@@ -79,7 +79,7 @@ or conda...
 
 * Install Metashape Pro 2.2.1 and activate your license.
 * **Windows:** `"C:\\Program Files\\Agisoft\\Metashape Pro\\metashape.exe"`
-* **Linux:** `/opt/metashape/metashape.sh`
+* **Linux:** `/home/$USER/metashape-pro/metashape.sh`
 
 > No extra Python packages are required inside Metashape for Stage A/B.
 

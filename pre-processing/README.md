@@ -13,3 +13,4 @@ In the case of our setup we have 396 `.png` images in the `<uid>__edof` subfolde
 
 Some prepreparation tools will be uploaded later. Important is to have datetime in the folder name of a scan as well as for the subfolder __edof and the specific Camera Position file that has the reference coordinates of each of the images. 
 
+Preprocessed files can be found as a zipped folder under the following link:  [DISC3D Archive](http://85.122.195.176:35178/cDISC3D/)
